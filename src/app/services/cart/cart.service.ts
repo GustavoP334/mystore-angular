@@ -43,6 +43,10 @@ export class CartService {
         }
     }
 
+    clearCart(): void {
+        this._cart.set([]);
+    }
+
     computedCartTotalCost() {
         return this._cart().reduce((total, item) => total + item.Product.price * item.Quantity, 0);
     }

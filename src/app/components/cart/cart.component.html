@@ -15,7 +15,7 @@
         <h1>Total: ${{ cartService.computedCartTotalCost() }}</h1>
     </div>
     <div class="form-margin">
-        <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
             <div class="input-margin">
                 <label for="name">Full name</label>
                 <br>
@@ -31,7 +31,7 @@
             <div class="input-margin">
                 <label for="creditCard">Credit card number</label>
                 <br>
-                <input type="number" id="creditCard" name="creditCard" minlength="16" placeholder="(16-digit number)" required ngModel />
+                <input type="text" id="creditCard" name="creditCard" minlength="16" placeholder="(16-digit number)" required ngModel />
             </div>
             <p>We'll never share your payment details with anyone else.</p>
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
