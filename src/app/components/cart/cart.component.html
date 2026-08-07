@@ -1,10 +1,40 @@
 <div class="cart-container">
     <div class="cart-panel">
+        <h3> Total items: {{ cartService.computedCartTotal() }}</h3>
         <div class="cart-item" *ngFor="let product of items()">
             <img [src]="product.Product.url" alt="{{ product.Product.name }}" class="cart-item-image" />
-            <h3>{{ product.Product.name }}</h3>
-            <p>$ {{ product.Product.price }}</p>
-            <input type="number" [(ngModel)]="product.Quantity" (change)="cartService.updateQuantity(product.Product.id, product.Quantity)" />
+            <div class="cart-item-details">
+                <h3>{{ product.Product.name }}</h3>
+                <p>${{ product.Product.price }}</p>
+                <label for="quantity-{{ product.Product.id }}">Amount:</label>
+                <input name="quantity-{{ product.Product.id }}" type="number" class="number-input" 
+                [(ngModel)]="product.Quantity" 
+                (change)="cartService.updateQuantity(product.Product.id, product.Quantity)" />
+            </div>
         </div>
+        <h1>Total: ${{ cartService.computedCartTotalCost() }}</h1>
+    </div>
+    <div class="form-margin">
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+            <div class="input-margin">
+                <label for="name">Full name</label>
+                <br>
+                <input type="text" id="name" name="name" minlength="3" placeholder="(minimum 3 characters)" required ngModel />
+            </div>
+            <br>
+            <div class="input-margin">
+                <label for="address">Address</label>
+                <br>
+                <input type="text" id="address" name="address" minlength="6" placeholder="(minimum 6 characters)" required ngModel />
+            </div>
+            <br>
+            <div class="input-margin">
+                <label for="creditCard">Credit card number</label>
+                <br>
+                <input type="number" id="creditCard" name="creditCard" minlength="16" placeholder="(16-digit number)" required ngModel />
+            </div>
+            <p>We'll never share your payment details with anyone else.</p>
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>

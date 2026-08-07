@@ -7,6 +7,10 @@ img {
   margin-bottom: 12px;
 }
 
+.input-margin {
+  margin-right: 12px;
+}
+
 .cart-item {
   display: flex;
   flex-direction: row;

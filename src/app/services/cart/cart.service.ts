@@ -32,9 +32,14 @@ export class CartService {
 
     updateQuantity(productId: number, quantity: number): void {
         const itemIndex = this._cart().findIndex(item => item.Product.id === productId);
-        if (itemIndex !== -1) {
+        
+        if (itemIndex !== -1 && quantity > 0) {
             this._cart()[itemIndex].Quantity = quantity;
             this._cart.set([...this._cart()]);
+        }
+
+        if (itemIndex !== -1 && quantity <= 0) {
+            this.removeFromCart(productId);
         }
     }
 
