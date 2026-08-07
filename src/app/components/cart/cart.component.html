@@ -19,19 +19,26 @@
             <div class="input-margin">
                 <label for="name">Full name</label>
                 <br>
-                <input type="text" id="name" name="name" minlength="3" placeholder="(minimum 3 characters)" required ngModel />
+                <input type="text" id="name" name="name" minlength="3" placeholder="(minimum 3 characters)" required
+                [(ngModel)]="name" (ngModelChange)="validateName($event)" />
+                <p *ngIf="nameError">{{ nameError }}</p>
             </div>
             <br>
             <div class="input-margin">
                 <label for="address">Address</label>
                 <br>
-                <input type="text" id="address" name="address" minlength="6" placeholder="(minimum 6 characters)" required ngModel />
+                <input type="text" id="address" name="address" minlength="6" placeholder="(minimum 6 characters)" required
+                [(ngModel)]="address" (ngModelChange)="validateAddress($event)" />
+                <p *ngIf="addressError">{{ addressError }}</p>
             </div>
             <br>
             <div class="input-margin">
                 <label for="creditCard">Credit card number</label>
                 <br>
-                <input type="text" id="creditCard" name="creditCard" minlength="16" placeholder="(16-digit number)" required ngModel />
+                <input type="text" id="creditCard" name="creditCard" minlength="16" maxlength="16"
+                inputmode="numeric" pattern="[0-9]{16}" placeholder="(16-digit number)" required
+                [(ngModel)]="creditCard" (ngModelChange)="validateCreditCard($event)" />
+                <p *ngIf="creditCardError">{{ creditCardError }}</p>
             </div>
             <p>We'll never share your payment details with anyone else.</p>
             <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>

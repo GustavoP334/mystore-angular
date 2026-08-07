@@ -15,8 +15,28 @@ import { Router } from '@angular/router';
 export class CartComponent {
   items: Signal<CartItem[]>;
 
+  name = '';
+  address = '';
+  creditCard = '';
+
+  nameError = '';
+  addressError = '';
+  creditCardError = '';
+
   constructor(public cartService: CartService, private confirmationService: ConfirmationService, private router: Router) {
     this.items = this.cartService.cart;
+  }
+
+  validateName(value: string) {
+    this.nameError = value && value.length >= 3 ? '' : 'Full name must be at least 3 characters.';
+  }
+
+  validateAddress(value: string) {
+    this.addressError = value && value.length >= 6 ? '' : 'Address must be at least 6 characters.';
+  }
+
+  validateCreditCard(value: string) {
+    this.creditCardError = /^[0-9]{16}$/.test(value) ? '' : 'Please enter exactly 16 digits, numbers only.';
   }
 
   onSubmit(form: NgForm) {
