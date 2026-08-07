@@ -1,0 +1,10 @@
+<div class="cart-container">
+    <div class="cart-panel">
+        <div class="cart-item" *ngFor="let product of items()">
+            <img [src]="product.Product.url" alt="{{ product.Product.name }}" class="cart-item-image" />
+            <h3>{{ product.Product.name }}</h3>
+            <p>$ {{ product.Product.price }}</p>
+            <input type="number" [(ngModel)]="product.Quantity" (change)="cartService.updateQuantity(product.Product.id, product.Quantity)" />
+        </div>
+    </div>
+</div>

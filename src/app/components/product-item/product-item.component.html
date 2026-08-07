@@ -1,0 +1,17 @@
+<div class="product-container">
+    <a [routerLink]="'/products-detail/' + product.id">
+        <img [src]="product.url" alt="{{ product.name }}" class="product-image">
+    </a>
+    <div>{{ product.name }}</div>
+    <div>{{ product.price }}</div>
+    <form (ngSubmit)="onSubmit()">
+        <input type="hidden" name="productId" [value]="product.id" readonly> 
+        <input type="hidden" name="productName" [value]="product.name" readonly>
+        <input type="hidden" name="productPrice" [value]="product.price" readonly>
+        <select name="quantity" class="select-input" [(ngModel)]="quantity" required>
+            <option *ngFor="let i of [1, 2, 3, 4]" [value]="i">{{ i }}</option>
+        </select>
+        <br>
+        <button type="submit">Add to cart</button>
+    </form>
+</div>
